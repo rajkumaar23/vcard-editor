@@ -4,7 +4,7 @@ import ICAL from "ical.js";
 function showConfigAndTable() {
     document.getElementById("contactsContainer").classList.remove("d-none");
     document.getElementById("configContainer").classList.remove("d-none");
-    document.getElementById("contactsContainer").scrollIntoView();
+    document.getElementById("configContainer").scrollIntoView();
 }
 
 function downloadUpdatedVCF() {
@@ -82,8 +82,8 @@ function populateTable(vCards) {
         if (contact.trim() !== "") {
             appendContact(contact, tableBody);
         }
-        showConfigAndTable();
     });
+    showConfigAndTable();
 }
 
 function appendContact(contact, tableBody) {
