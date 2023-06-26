@@ -89,9 +89,12 @@ function populateTable(vCards) {
 function appendContact(contact, tableBody) {
     const defaultTdClasses = "text-center fw-semibold";
     let {fullName, phoneNumbers, image} = parseVCard(contact);
+    const phoneNumbersLength = phoneNumbers.length;
+    if (phoneNumbersLength < 1) {
+        return;
+    }
     let row = document.createElement("tr");
     const icon = `<img src="${image || USER_ICON}" class="img-fluid rounded-circle" width="75" alt="Icon">`;
-    const phoneNumbersLength = phoneNumbers.length;
     row.innerHTML = `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${icon}</td>`;
     row.innerHTML += `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${fullName}</td>`;
     row.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumbers[0] || "N/A"}</td>`;
