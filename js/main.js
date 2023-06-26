@@ -4,8 +4,7 @@ import {
     handleCountryCodeChange, handleLeadingZeroNumbersCheckboxChange,
     handlePhoneNumberDigitsChange, handleRefreshPreview,
     handleVCardUpload,
-    init,
-    showConfigAndTable
+    init
 } from "./functions.js";
 
 window.vCardData = [];
@@ -34,9 +33,5 @@ refreshPreviewButton.onclick = handleRefreshPreview
 
 const downloadUpdatedVCFButton = document.getElementById("downloadVCF");
 downloadUpdatedVCFButton.onclick = downloadUpdatedVCF
-
-if (window.location.hostname === "localhost") {
-    showConfigAndTable();
-}
 
 

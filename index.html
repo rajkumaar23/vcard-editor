@@ -8,31 +8,42 @@
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <script data-domain="vcard-editor.rajkumaar.co.in" defer
             src="https://plausible.pi.rajkumaar.co.in/js/script.js"></script>
-    <title>vCard Editor</title>
+    <title>vCard Editor | Bulk Country Code Addition</title>
+    <meta content="Effortlessly add country codes in bulk to your contact list."
+          name="description">
+    <meta content="vcard, bulk country code addition, contact list, country code tool, contact management, communication efficiency, streamline contacts"
+          name="keywords">
 </head>
 
 <body>
 <div class="container mt-5 text-center">
-    <h1 class="mb-4 h1 fw-bolder">vCard Editor</h1>
-    <h3 class="h3 fw-bold">Add country code to contacts</h3>
+    <h1 class="mb-4 h1 fw-bold">vCard Editor</h1>
+    <h3 class="h3 fw-semibold">Add country code to contacts</h3>
 </div>
 
 <div class="container p-2 text-center">
-    <div class="d-inline-block w-auto">
-        <div class="my-3">
-            <label class="h5 fw-semibold" for="vCardInput">Upload your vCard (.vcf) file</label>
-            <input class="form-control" id="vCardInput" type="file">
+    <div class="my-3 d-inline-block w-auto">
+        <label class="h5" for="vCardInput">Upload your vCard (.vcf) file</label>
+        <input class="form-control" id="vCardInput" type="file">
+        <div class="mt-2 mb-0 alert alert-primary" role="alert">
+            Your contact list is processed exclusively on the client side, never leaving your browser, ensuring complete
+            privacy.
         </div>
-        <div class="mt-4 d-none" id="configContainer">
-            <h3 class="h5 fw-semibold">Configuration for updating contacts</h3>
+    </div>
+</div>
+
+<div class="container px-4 d-none text-center" id="contactsContainer">
+    <div class="row mt-3">
+        <div class="col col-auto mx-auto d-none" id="configContainer">
+            <h3 class="h5">Configuration</h3>
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row g-3 align-items-center">
                         <div class="col-auto">
-                            <label class="col-form-label" for="phoneNumberDigits">Only update phone numbers
+                            <label class="col-form-label" for="phoneNumberDigits">Only update numbers
                                 containing </label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-auto mt-auto">
                             <select class="form-select" id="phoneNumberDigits"></select>
                         </div>
                     </div>
@@ -40,7 +51,7 @@
                 <li class="list-group-item">
                     <div class="row g-3 align-items-center">
                         <div class="col-auto">
-                            <label class="col-form-label" for="includeLeadingZeroNumbers">Update phone numbers
+                            <label class="col-form-label" for="includeLeadingZeroNumbers">Update numbers
                                 starting with 0</label>
                         </div>
                         <div class="col-auto">
@@ -54,39 +65,35 @@
                         <div class="col-auto">
                             <label class="col-form-label" for="countryCode">Prefix with country code</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-auto mt-auto">
                             <select class="form-select" id="countryCode"></select>
                         </div>
                     </div>
                 </li>
             </ul>
-            <div class="row p-3 mt-4">
+            <div class="row p-3">
                 <button class="col m-2 btn btn-outline-dark" id="refreshPreview" type="button">Refresh preview</button>
                 <button class="col m-2 btn btn-outline-dark" id="downloadVCF" type="button">
                     Download updated file
                 </button>
             </div>
         </div>
-    </div>
-</div>
+        <div class="col w-auto">
+            <h3 class="h5">Preview</h3>
+            <table class="table table-sm table-responsive table-bordered align-middle text-center">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Original #</th>
+                    <th scope="col">Modified #</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider" id="contactTableBody">
 
-<div class="container px-4 d-none text-center" id="contactsContainer">
-    <div>
-        <div class="table-responsive m-auto my-3">
+                </tbody>
+            </table>
         </div>
-        <table class="table table-bordered align-middle text-center">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">Picture</th>
-                <th scope="col">Full Name</th>
-                <th scope="col">Original #</th>
-                <th scope="col">Modified #</th>
-            </tr>
-            </thead>
-            <tbody class="table-group-divider" id="contactTableBody">
-
-            </tbody>
-        </table>
     </div>
 </div>
 <script src="/js/main.js" type="module"></script>
