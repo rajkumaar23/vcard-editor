@@ -4,15 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <title>vCard Editor</title>
 </head>
 
 <body>
   <div class="container mt-5">
-    <h1 class="text-center mb-4">vCard Editor</h1>
-    <h3 class="text-center mb-4">Add country code in bulk</h3>
+    <h1 class="text-center mb-4 h1 fw-bolder">vCard Editor</h1>
+    <h3 class="text-center mb-4 h3 fw-bold">Add country code to contacts</h3>
     <div class="p-4 mb-3 m-auto col-md-6">
-      <label for="vCardInput" class="form-label w-100 text-center">Upload your vCard (.vcf) file</label>
+      <label for="vCardInput" class="form-label w-100 text-center fw-semibold">Upload your vCard (.vcf) file</label>
       <input class="form-control" type="file" id="vCardInput">
     </div>
   </div>
@@ -23,9 +25,10 @@
         <caption>Contacts Preview</caption>
         <thead class="thead-light">
           <tr>
-            <th scope="col">Icon</th>
-            <th scope="col">Name</th>
-            <th scope="col">Cell Number</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Original Ph.</th>
+            <th scope="col">Modified Ph.</th>
           </tr>
         </thead>
         <tbody class="table-group-divider" id="contactTableBody">

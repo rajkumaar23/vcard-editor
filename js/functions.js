@@ -4,6 +4,7 @@ import ICAL from "ical.js";
 function handleVCardUpload(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
+    const defaultTdClasses = "text-center fw-semibold";
 
     reader.onload = function (_) {
         const data = reader.result;
@@ -24,13 +25,15 @@ function handleVCardUpload(e) {
                 let row = document.createElement("tr");
                 const icon = `<img src="${image || USER_ICON}" class="img-fluid rounded-circle" width="75" alt="Icon">`;
                 const phoneNumbersLength = phoneNumbers.length;
-                row.innerHTML = `<td class='text-center' rowspan=${phoneNumbersLength}>${icon}</td>`;
-                row.innerHTML += `<td class='text-center' rowspan=${phoneNumbersLength}>${fullName}</td>`;
-                row.innerHTML += `<td class='text-center'>${phoneNumbers[0] || "N/A"}</td>`;
+                row.innerHTML = `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${icon}</td>`;
+                row.innerHTML += `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${fullName}</td>`;
+                row.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumbers[0] || "N/A"}</td>`;
+                row.innerHTML += `<td class='${defaultTdClasses} table-info'>${addCountryCode(phoneNumbers[0], 10, "+91") || "N/A"}</td>`;
                 tableBody.appendChild(row);
                 phoneNumbers.slice(1).forEach((phoneNumber) => {
                     let phoneNumberRow = document.createElement("tr");
-                    phoneNumberRow.innerHTML = `<td class='text-center'>${phoneNumber}</td>`;
+                    phoneNumberRow.innerHTML = `<td class='${defaultTdClasses}'>${phoneNumber}</td>`;
+                    phoneNumberRow.innerHTML += `<td class='${defaultTdClasses} table-info'>${addCountryCode(phoneNumber, 10, "+91") || "N/A"}</td>`;
                     tableBody.appendChild(phoneNumberRow);
                 });
             }
@@ -70,6 +73,19 @@ function parseVCard(vCardData) {
     return {
         fullName, phoneNumbers, image,
     };
+}
+
+function addCountryCode(phoneNumber, digits, countryCode) {
+    if (!phoneNumber || phoneNumber.trim().startsWith("+")) {
+        return phoneNumber;
+    }
+
+    const processedPhoneNumber = phoneNumber.replace(/\D/g, "").replace(/^0/, '');
+    if (processedPhoneNumber.length !== digits) {
+        return phoneNumber;
+    }
+
+    return countryCode + processedPhoneNumber;
 }
 
 export {
