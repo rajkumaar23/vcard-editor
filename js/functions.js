@@ -1,51 +1,75 @@
 import {USER_ICON} from "./constants.js";
 import ICAL from "ical.js";
 
-function showTable() {
+function showConfigAndTable() {
     document.getElementById("contactsContainer").classList.remove("d-none");
+    document.getElementById("configContainer").classList.remove("d-none");
+}
+
+function handlePhoneNumberDigitsChange(e) {
+    window.updateConfig['phoneNumberDigits'] = parseInt(e.target.value);
+}
+
+function handleCountryCodeChange(e) {
+    window.updateConfig['countryCode'] = e.target.value;
+}
+
+function handleLeadingZeroNumbersCheckboxChange(e) {
+    window.updateConfig['includeLeadingZeroNumbers'] = e.target.checked;
+}
+
+function handleRefreshPreview(_) {
+    populateTable(window.vCardData);
 }
 
 function handleVCardUpload(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
-    const defaultTdClasses = "text-center fw-semibold";
 
     reader.onload = function (_) {
         const data = reader.result;
         const regExp = /BEGIN:VCARD[\s\S]*?END:VCARD/gim;
         const vCards = data.match(regExp);
-
         if (!vCards) {
             console.error("Error parsing vcf file", data);
             return;
         }
 
-        const tableBody = document.getElementById("contactTableBody");
-        tableBody.innerHTML = "";
-
-        vCards.forEach(function (contact) {
-            if (contact.trim() !== "") {
-                let {fullName, phoneNumbers, image} = parseVCard(contact);
-                let row = document.createElement("tr");
-                const icon = `<img src="${image || USER_ICON}" class="img-fluid rounded-circle" width="75" alt="Icon">`;
-                const phoneNumbersLength = phoneNumbers.length;
-                row.innerHTML = `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${icon}</td>`;
-                row.innerHTML += `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${fullName}</td>`;
-                row.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumbers[0] || "N/A"}</td>`;
-                row.innerHTML += `<td class='${defaultTdClasses} table-info'>${addCountryCode(phoneNumbers[0], 10, "+91") || "N/A"}</td>`;
-                tableBody.appendChild(row);
-                phoneNumbers.slice(1).forEach((phoneNumber) => {
-                    let phoneNumberRow = document.createElement("tr");
-                    phoneNumberRow.innerHTML = `<td class='${defaultTdClasses}'>${phoneNumber}</td>`;
-                    phoneNumberRow.innerHTML += `<td class='${defaultTdClasses} table-info'>${addCountryCode(phoneNumber, 10, "+91") || "N/A"}</td>`;
-                    tableBody.appendChild(phoneNumberRow);
-                });
-            }
-            showTable();
-        });
+        window.vCardData = vCards;
+        populateTable(vCards);
     };
 
     reader.readAsText(file);
+}
+
+function populateTable(vCards) {
+    const tableBody = document.getElementById("contactTableBody");
+    tableBody.innerHTML = "";
+    vCards.forEach(function (contact) {
+        if (contact.trim() !== "") {
+            appendContact(contact, tableBody);
+        }
+        showConfigAndTable();
+    });
+}
+
+function appendContact(contact, tableBody) {
+    const defaultTdClasses = "text-center fw-semibold";
+    let {fullName, phoneNumbers, image} = parseVCard(contact);
+    let row = document.createElement("tr");
+    const icon = `<img src="${image || USER_ICON}" class="img-fluid rounded-circle" width="75" alt="Icon">`;
+    const phoneNumbersLength = phoneNumbers.length;
+    row.innerHTML = `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${icon}</td>`;
+    row.innerHTML += `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${fullName}</td>`;
+    row.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumbers[0] || "N/A"}</td>`;
+    row.innerHTML += `<td class='${defaultTdClasses} ${getClassForModifiedPhoneRow(phoneNumbers[0])}'>${addCountryCode(phoneNumbers[0]) || "N/A"}</td>`;
+    tableBody.appendChild(row);
+    phoneNumbers.slice(1).forEach((phoneNumber) => {
+        let phoneNumberRow = document.createElement("tr");
+        phoneNumberRow.innerHTML = `<td class='${defaultTdClasses}'>${phoneNumber}</td>`;
+        phoneNumberRow.innerHTML += `<td class='${defaultTdClasses} ${getClassForModifiedPhoneRow(phoneNumber)}'>${addCountryCode(phoneNumber) || "N/A"}</td>`;
+        tableBody.appendChild(phoneNumberRow);
+    });
 }
 
 function parseVCard(vCardData) {
@@ -79,17 +103,21 @@ function parseVCard(vCardData) {
     };
 }
 
-function addCountryCode(phoneNumber, digits, countryCode) {
+function addCountryCode(phoneNumber) {
     if (!phoneNumber || phoneNumber.trim().startsWith("+")) {
         return phoneNumber;
     }
 
     const processedPhoneNumber = phoneNumber.replace(/\D/g, "").replace(/^0/, '');
-    if (processedPhoneNumber.length !== digits) {
+    if (processedPhoneNumber.length !== window.updateConfig.phoneNumberDigits) {
         return phoneNumber;
     }
 
-    return countryCode + processedPhoneNumber;
+    return window.updateConfig.countryCode + processedPhoneNumber;
+}
+
+function getClassForModifiedPhoneRow(phoneNumber) {
+    return phoneNumber !== addCountryCode(phoneNumber) ? "table-info" : "";
 }
 
 function initDigitOptions() {
@@ -109,8 +137,12 @@ function init() {
 }
 
 export {
+    handlePhoneNumberDigitsChange,
+    handleCountryCodeChange,
+    handleLeadingZeroNumbersCheckboxChange,
+    handleRefreshPreview,
     handleVCardUpload,
     parseVCard,
-    showTable,
+    showConfigAndTable,
     init
 }

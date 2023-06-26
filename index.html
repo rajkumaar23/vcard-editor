@@ -10,67 +10,76 @@
 </head>
 
 <body>
-<div class="container mt-5">
-    <h1 class="text-center mb-4 h1 fw-bolder">vCard Editor</h1>
-    <h3 class="text-center mb-4 h3 fw-bold">Add country code to contacts</h3>
-    <div class="p-4 mb-3 m-auto col-md-6">
-        <label class="form-label w-100 text-center fw-semibold" for="vCardInput">Upload your vCard (.vcf) file</label>
-        <input class="form-control" id="vCardInput" type="file">
-    </div>
+<div class="container mt-5 text-center">
+    <h1 class="mb-4 h1 fw-bolder">vCard Editor</h1>
+    <h3 class="h3 fw-bold">Add country code to contacts</h3>
 </div>
 
-<div class="container col-md-10 mt-5 d-none" id="contactsContainer">
-    <div>
-        <h3 class="h3">Configuration</h3>
-        <div class="card my-3">
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label" for="phoneNumberDigits">Only update phone numbers
-                                    containing </label>
-                            </div>
-                            <div class="col-auto">
-                                <select class="form-select" id="phoneNumberDigits"></select>
-                            </div>
+<div class="container p-2 text-center">
+    <div class="d-inline-block w-auto">
+        <div class="my-3">
+            <label class="h5 fw-semibold" for="vCardInput">Upload your vCard (.vcf) file</label>
+            <input class="form-control" id="vCardInput" type="file">
+        </div>
+        <div class="mt-5 d-none" id="configContainer">
+            <h3 class="h5 fw-semibold">Configuration for updating contacts</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label" for="phoneNumberDigits">Only update phone numbers
+                                containing </label>
                         </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label" for="includeLeadingZeroNumbers">Update phone numbers
-                                    starting with 0</label>
-                            </div>
-                            <div class="col-auto">
-                                <input checked class="form-check-input" id="includeLeadingZeroNumbers"
-                                       role="switch" type="checkbox">
-                            </div>
+                        <div class="col-auto">
+                            <select class="form-select" id="phoneNumberDigits"></select>
                         </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label" for="countryCode">Prefix with country code</label>
-                            </div>
-                            <div class="col-auto">
-                                <input class="form-control" id="countryCode" type="text" value="+91">
-                            </div>
+                        <div class="col-auto">
+                            <label class="col-form-label" for="phoneNumberDigits"></label>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label" for="includeLeadingZeroNumbers">Update phone numbers
+                                starting with 0</label>
+                        </div>
+                        <div class="col-auto">
+                            <input checked class="form-check-input" id="includeLeadingZeroNumbers"
+                                   role="switch" type="checkbox">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label" for="countryCode">Prefix with country code</label>
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" id="countryCode" type="text" value="+91">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="row p-3">
+                <button id="refreshPreview" class="col m-2 btn btn-outline-dark" type="button">Refresh preview</button>
+                <button id="downloadVCF" class="col m-2 btn btn-outline-dark" type="button">Download modified VCF</button>
             </div>
         </div>
     </div>
-    <h3 class="h3 mt-5">Contacts Preview</h3>
-    <div class="table-responsive m-auto my-3">
+</div>
+
+<div class="container px-4 d-none text-center" id="contactsContainer">
+    <div>
+        <div class="table-responsive m-auto my-3">
+        </div>
         <table class="table table-bordered align-middle text-center">
             <thead class="thead-light">
             <tr>
                 <th scope="col">Picture</th>
                 <th scope="col">Full Name</th>
-                <th scope="col">Original Ph.</th>
-                <th scope="col">Modified Ph.</th>
+                <th scope="col">Original #</th>
+                <th scope="col">Modified #</th>
             </tr>
             </thead>
             <tbody class="table-group-divider" id="contactTableBody">
