@@ -1,5 +1,6 @@
 import "../scss/style.scss";
 import {
+    downloadUpdatedVCF,
     handleCountryCodeChange, handleLeadingZeroNumbersCheckboxChange,
     handlePhoneNumberDigitsChange, handleRefreshPreview,
     handleVCardUpload,
@@ -30,6 +31,9 @@ includeLeadingZeroNumbersCheckbox.onchange = handleLeadingZeroNumbersCheckboxCha
 
 const refreshPreviewButton = document.getElementById("refreshPreview");
 refreshPreviewButton.onclick = handleRefreshPreview
+
+const downloadUpdatedVCFButton = document.getElementById("downloadVCF");
+downloadUpdatedVCFButton.onclick = downloadUpdatedVCF
 
 if (window.location.hostname === "localhost") {
     showConfigAndTable();

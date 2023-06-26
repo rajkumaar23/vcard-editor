@@ -6,6 +6,38 @@ function showConfigAndTable() {
     document.getElementById("configContainer").classList.remove("d-none");
 }
 
+function downloadUpdatedVCF() {
+    let modifiedVCardData = [];
+    window.vCardData.forEach((contact) => {
+        if (contact.trim() !== "") {
+            const vCard = ICAL.parse(contact);
+            const comp = new ICAL.Component(vCard);
+            const properties = comp.getAllProperties();
+            for (const prop of properties) {
+                // Handle prop names with prefixes such as 'item1.tel'
+                const propNameGroup = prop.name.split(".");
+                const propName = propNameGroup.length === 2 ? propNameGroup[1] : propNameGroup[0];
+
+                if (propName === "tel") {
+                    prop.setValue(addCountryCode(prop.getFirstValue()));
+                }
+            }
+
+            const lines = [];
+            lines.push('BEGIN:VCARD');
+            for (const prop of properties) {
+                lines.push(prop.toICALString());
+            }
+            lines.push('END:VCARD');
+            modifiedVCardData.push(lines.join("\r\n"));
+        }
+    });
+    const downloadLink = document.createElement('a');
+    downloadLink.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(modifiedVCardData.join("\r\n"));
+    downloadLink.download = 'updated_contacts.vcf';
+    downloadLink.click();
+}
+
 function handlePhoneNumberDigitsChange(e) {
     window.updateConfig['phoneNumberDigits'] = parseInt(e.target.value);
 }
@@ -108,7 +140,10 @@ function addCountryCode(phoneNumber) {
         return phoneNumber;
     }
 
-    const processedPhoneNumber = phoneNumber.replace(/\D/g, "").replace(/^0/, '');
+    let processedPhoneNumber = phoneNumber.replace(/\D/g, "");
+    if (window.updateConfig.includeLeadingZeroNumbers) {
+        processedPhoneNumber = processedPhoneNumber.replace(/^0/, '');
+    }
     if (processedPhoneNumber.length !== window.updateConfig.phoneNumberDigits) {
         return phoneNumber;
     }
@@ -144,5 +179,6 @@ export {
     handleVCardUpload,
     parseVCard,
     showConfigAndTable,
+    downloadUpdatedVCF,
     init
 }
