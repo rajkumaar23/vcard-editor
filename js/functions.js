@@ -4,6 +4,7 @@ import ICAL from "ical.js";
 function showConfigAndTable() {
     document.getElementById("contactsContainer").classList.remove("d-none");
     document.getElementById("configContainer").classList.remove("d-none");
+    document.getElementById("contactsContainer").scrollIntoView();
 }
 
 function downloadUpdatedVCF() {
