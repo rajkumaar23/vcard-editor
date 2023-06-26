@@ -1,6 +1,10 @@
 import {USER_ICON} from "./constants.js";
 import ICAL from "ical.js";
 
+function showTable() {
+    document.getElementById("contactsContainer").classList.remove("d-none");
+}
+
 function handleVCardUpload(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -37,7 +41,7 @@ function handleVCardUpload(e) {
                     tableBody.appendChild(phoneNumberRow);
                 });
             }
-            document.getElementById("contactsContainer").classList.remove("d-none");
+            showTable();
         });
     };
 
@@ -88,7 +92,25 @@ function addCountryCode(phoneNumber, digits, countryCode) {
     return countryCode + processedPhoneNumber;
 }
 
+function initDigitOptions() {
+    const digitsSelect = document.getElementById('phoneNumberDigits');
+    digitsSelect.innerHTML = "";
+    for (let i = 4; i <= 12; i++) {
+        const option = document.createElement('option')
+        option.value = `${i}`;
+        option.text = `${i} digits`;
+        option.selected = i === 10;
+        digitsSelect.appendChild(option);
+    }
+}
+
+function init() {
+    initDigitOptions();
+}
+
 export {
     handleVCardUpload,
-    parseVCard
+    parseVCard,
+    showTable,
+    init
 }

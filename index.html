@@ -2,42 +2,84 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <title>vCard Editor</title>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://rsms.me/" rel="preconnect">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
+    <title>vCard Editor</title>
 </head>
 
 <body>
-  <div class="container mt-5">
+<div class="container mt-5">
     <h1 class="text-center mb-4 h1 fw-bolder">vCard Editor</h1>
     <h3 class="text-center mb-4 h3 fw-bold">Add country code to contacts</h3>
     <div class="p-4 mb-3 m-auto col-md-6">
-      <label for="vCardInput" class="form-label w-100 text-center fw-semibold">Upload your vCard (.vcf) file</label>
-      <input class="form-control" type="file" id="vCardInput">
+        <label class="form-label w-100 text-center fw-semibold" for="vCardInput">Upload your vCard (.vcf) file</label>
+        <input class="form-control" id="vCardInput" type="file">
     </div>
-  </div>
+</div>
 
-  <div id="contactsContainer" class="container mt-5 d-none">
-    <div class="table-responsive m-auto col-md-10">
-      <table class="table table-bordered caption-top align-middle text-center">
-        <caption>Contacts Preview</caption>
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Picture</th>
-            <th scope="col">Full Name</th>
-            <th scope="col">Original Ph.</th>
-            <th scope="col">Modified Ph.</th>
-          </tr>
-        </thead>
-        <tbody class="table-group-divider" id="contactTableBody">
-
-        </tbody>
-      </table>
+<div class="container col-md-10 mt-5 d-none" id="contactsContainer">
+    <div>
+        <h3 class="h3">Configuration</h3>
+        <div class="card my-3">
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label class="col-form-label" for="phoneNumberDigits">Only update phone numbers
+                                    containing </label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-select" id="phoneNumberDigits"></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label class="col-form-label" for="includeLeadingZeroNumbers">Update phone numbers
+                                    starting with 0</label>
+                            </div>
+                            <div class="col-auto">
+                                <input checked class="form-check-input" id="includeLeadingZeroNumbers"
+                                       role="switch" type="checkbox">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label class="col-form-label" for="countryCode">Prefix with country code</label>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" id="countryCode" type="text" value="+91">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-  <script type="module" src="/js/main.js"></script>
+    <h3 class="h3 mt-5">Contacts Preview</h3>
+    <div class="table-responsive m-auto my-3">
+        <table class="table table-bordered align-middle text-center">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Picture</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Original Ph.</th>
+                <th scope="col">Modified Ph.</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider" id="contactTableBody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/js/main.js" type="module"></script>
 </body>
 
 </html>
