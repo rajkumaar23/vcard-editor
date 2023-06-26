@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <link href="https://rsms.me/" rel="preconnect">
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
-    <script defer data-domain="vcard-editor.rajkumaar.co.in" src="https://plausible.pi.rajkumaar.co.in/js/script.js"></script>
+    <script data-domain="vcard-editor.rajkumaar.co.in" defer
+            src="https://plausible.pi.rajkumaar.co.in/js/script.js"></script>
     <title>vCard Editor</title>
 </head>
 
@@ -60,8 +61,10 @@
                 </li>
             </ul>
             <div class="row p-3 mt-4">
-                <button id="refreshPreview" class="col m-2 btn btn-outline-dark" type="button">Refresh preview</button>
-                <button id="downloadVCF" class="col m-2 btn btn-outline-dark" type="button">Download updated file</button>
+                <button class="col m-2 btn btn-outline-dark" id="refreshPreview" type="button">Refresh preview</button>
+                <button class="col m-2 btn btn-outline-dark" id="downloadVCF" type="button">
+                    Download updated file
+                </button>
             </div>
         </div>
     </div>
