@@ -1,4 +1,4 @@
-import {USER_ICON} from "./constants.js";
+import {PHONE_CODE_MAP, USER_ICON} from "./constants.js";
 import ICAL from "ical.js";
 
 function showConfigAndTable() {
@@ -168,8 +168,21 @@ function initDigitOptions() {
     }
 }
 
+function initCountryCodeOptions() {
+    const countryCode = document.getElementById('countryCode');
+    countryCode.innerHTML = "";
+    for (let [name, code] of Object.entries(PHONE_CODE_MAP)) {
+        const option = document.createElement('option')
+        option.value = `+${code}`;
+        option.text = `${name} (+${code})`;
+        option.selected = name === "India";
+        countryCode.appendChild(option);
+    }
+}
+
 function init() {
     initDigitOptions();
+    initCountryCodeOptions();
 }
 
 export {
