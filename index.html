@@ -19,12 +19,13 @@
     <link rel="manifest" href="assets/site.webmanifest">
 </head>
 
-<body class="min-vh-100">
+<body class="min-vh-100 text-bg-light">
     <div class="container d-flex align-items-center justify-content-center">
         <div class="content mt-5">
             <h1 class="display-1 fw-bold">vCard Editor</h1>
             <p class="h4">Add country codes to mobile numbers in a few clicks!</p>
-            <div class="my-4 d-inline-block w-auto">
+            <p class="text-secondary">Remember to keep a backup of your original VCF file to revert changes, if necessary.</p>
+            <div class="my-2 d-inline-block w-auto">
                 <label class="mb-1" for="vCardInput">Upload your vCard (.vcf) file</label>
                 <input class="form-control" id="vCardInput" onclick="this.value=null;" type="file" accept=".vcf">
                 <div class="mt-2 mb-0 alert alert-primary" role="alert">
@@ -99,6 +100,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container my-3 d-flex justify-content-center">
+        <div class="content">
+            <p>Built with &hearts; by <a class="text-dark" href="//rajkumaar.co.in">Rajkumar</a></p>
         </div>
     </div>
     <script src="/js/main.js" type="module"></script>
