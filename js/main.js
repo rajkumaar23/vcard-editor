@@ -28,9 +28,6 @@ countryCodeInput.onchange = handleCountryCodeChange
 const includeLeadingZeroNumbersCheckbox = document.getElementById("includeLeadingZeroNumbers");
 includeLeadingZeroNumbersCheckbox.onchange = handleLeadingZeroNumbersCheckboxChange
 
-const refreshPreviewButton = document.getElementById("refreshPreview");
-refreshPreviewButton.onclick = handleRefreshPreview
-
 const downloadUpdatedVCFButton = document.getElementById("downloadVCF");
 downloadUpdatedVCFButton.onclick = downloadUpdatedVCF
 

@@ -2,9 +2,7 @@ import {PHONE_CODE_MAP, USER_ICON} from "./constants.js";
 import ICAL from "ical.js";
 
 function showConfigAndTable() {
-    document.getElementById("contactsContainer").classList.remove("d-none");
-    document.getElementById("configContainer").classList.remove("d-none");
-    document.getElementById("configContainer").scrollIntoView();
+    document.getElementById("mainContainer").classList.remove("d-none");
 }
 
 function downloadUpdatedVCF() {
@@ -41,18 +39,23 @@ function downloadUpdatedVCF() {
 
 function handlePhoneNumberDigitsChange(e) {
     window.updateConfig['phoneNumberDigits'] = parseInt(e.target.value);
+    handleRefreshPreview();
 }
 
 function handleCountryCodeChange(e) {
     window.updateConfig['countryCode'] = e.target.value;
+    handleRefreshPreview();
 }
 
 function handleLeadingZeroNumbersCheckboxChange(e) {
     window.updateConfig['includeLeadingZeroNumbers'] = e.target.checked;
+    handleRefreshPreview();
 }
 
-function handleRefreshPreview(_) {
-    populateTable(window.vCardData);
+function handleRefreshPreview() {
+    setTimeout(() => {
+        populateTable(window.vCardData);
+    }, 100);
 }
 
 function handleVCardUpload(e) {
