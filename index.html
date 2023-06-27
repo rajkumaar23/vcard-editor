@@ -8,91 +8,96 @@
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <script data-domain="vcard-editor.rajkumaar.co.in" defer
         src="https://plausible.pi.rajkumaar.co.in/js/script.js"></script>
-    <title>vCard Editor | Bulk Country Code Addition</title>
+    <title>vCard Editor | Add country codes to mobile numbers in a few clicks!</title>
     <meta content="Effortlessly add country codes in bulk to your contact list." name="description">
     <meta
         content="vcard, bulk country code addition, contact list, country code tool, contact management, communication efficiency, streamline contacts"
         name="keywords">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
 </head>
 
-<body>
-    <div class="container mt-5 text-center">
-        <h1 class="mb-4 h1 fw-bold">vCard Editor</h1>
-        <h3 class="h3 fw-semibold">Add country code to contacts</h3>
-    </div>
-
-    <div class="container p-2 text-center">
-        <div class="my-3 d-inline-block w-auto">
-            <label class="h5" for="vCardInput">Upload your vCard (.vcf) file</label>
-            <input class="form-control" id="vCardInput" type="file" accept="vcf">
-            <div class="mt-2 mb-0 alert alert-primary" role="alert">
-                Your contact list is processed exclusively on the client side, never leaving your browser, ensuring
-                complete
-                privacy.
+<body class="min-vh-100">
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="content mt-5">
+            <h1 class="display-1 fw-bold">vCard Editor</h1>
+            <p class="h4">Add country codes to mobile numbers in a few clicks!</p>
+            <div class="my-4 d-inline-block w-auto">
+                <label class="mb-1" for="vCardInput">Upload your vCard (.vcf) file</label>
+                <input class="form-control" id="vCardInput" onclick="this.value=null;" type="file" accept=".vcf">
+                <div class="mt-2 mb-0 alert alert-primary" role="alert">
+                    Your contact list is processed exclusively on the client side, never leaving your browser.
+                </div>
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="content">
+            <div class="d-none" id="mainContainer">
+                <div class="row mt-3">
+                    <div class="col col-auto mx-auto">
+                        <div class="sticky-top pt-3">
+                            <h3 class="h5 text-center">Configuration</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label" for="phoneNumberDigits">Only update numbers
+                                                containing </label>
+                                        </div>
+                                        <div class="col-auto mt-auto">
+                                            <select class="form-select" id="phoneNumberDigits"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label" for="includeLeadingZeroNumbers">Update numbers
+                                                starting with 0</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input checked class="form-check-input" id="includeLeadingZeroNumbers"
+                                                role="switch" type="checkbox">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label" for="countryCode">Prefix with country
+                                                code</label>
+                                        </div>
+                                        <div class="col-auto mt-auto">
+                                            <select class="form-select" id="countryCode"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button class="my-2 col-12 btn btn-dark" id="downloadVCF" type="button">
+                                Download as VCF
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col w-auto">
+                        <h3 class="h5 text-center pt-3">Preview</h3>
+                        <table class="table table-sm table-responsive table-bordered align-middle text-center">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Picture</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Original #</th>
+                                    <th scope="col">Modified #</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider" id="contactTableBody">
 
-    <div class="container px-4 d-none text-center" id="mainContainer">
-        <div class="row mt-3">
-            <div class="col col-auto mx-auto">
-                <div class="sticky-top pt-3">
-                    <h3 class="h5">Configuration</h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label class="col-form-label" for="phoneNumberDigits">Only update numbers
-                                        containing </label>
-                                </div>
-                                <div class="col-auto mt-auto">
-                                    <select class="form-select" id="phoneNumberDigits"></select>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label class="col-form-label" for="includeLeadingZeroNumbers">Update numbers
-                                        starting with 0</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input checked class="form-check-input" id="includeLeadingZeroNumbers" role="switch"
-                                        type="checkbox">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label class="col-form-label" for="countryCode">Prefix with country code</label>
-                                </div>
-                                <div class="col-auto mt-auto">
-                                    <select class="form-select" id="countryCode"></select>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <button class="my-2 col-12 btn btn-outline-dark" id="downloadVCF" type="button">
-                        Download as VCF
-                    </button>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="col w-auto">
-                <h3 class="h5 pt-3">Preview</h3>
-                <table class="table table-sm table-responsive table-bordered align-middle text-center">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Picture</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Original #</th>
-                            <th scope="col">Modified #</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider" id="contactTableBody">
-
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
