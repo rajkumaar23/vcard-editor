@@ -90,7 +90,7 @@ function populateTable(vCards) {
 }
 
 function appendContact(contact, tableBody) {
-    const defaultTdClasses = "text-center fw-light";
+    const defaultTdClasses = "text-start px-3 fw-light";
     let {fullName, phoneNumbers, image} = parseVCard(contact);
     const phoneNumbersLength = phoneNumbers.length;
     if (phoneNumbersLength < 1) {
