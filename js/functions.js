@@ -162,7 +162,7 @@ function addCountryCode(phoneNumber) {
 }
 
 function getClassForModifiedPhoneRow(phoneNumber) {
-    return phoneNumber !== addCountryCode(phoneNumber) ? "table-info" : "";
+    return phoneNumber !== addCountryCode(phoneNumber) ? "table-secondary" : "";
 }
 
 function initDigitOptions() {

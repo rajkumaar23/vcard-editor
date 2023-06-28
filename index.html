@@ -67,7 +67,8 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Open the "Contacts" app.</li>
-                            <li class="list-group-item">At the bottom, tap <b>Fix & manage</b> and then <b>Export to file</b>.</li>
+                            <li class="list-group-item">At the bottom, tap <b>Fix & manage</b> and then <b>Export to
+                                    file</b>.</li>
                             <li class="list-group-item">Choose one or more accounts to export contacts from.</li>
                             <li class="list-group-item">Tap <b>Export to .VCF file</b>.</li>
                         </ul>
@@ -83,12 +84,13 @@
             <p class="h6 text-secondary">For instructions on how to export your contacts as a .vcf file, click <a
                     class="text-secondary" href="#" role="button" data-bs-toggle="modal"
                     data-bs-target="#instructions">here</a>.</p>
-            <p class="h6 text-secondary">Remember to keep a backup of your original VCF file to revert changes, if
-                necessary.</p>
             <div class="my-3 d-inline-block w-auto">
-                <label class="mb-1" for="vCardInput">Upload your vCard (.vcf) file</label>
+                <label class="mx-1" for="vCardInput">Upload your vCard (.vcf) file</label>
+                <p class="mx-1 fw-lighter text-secondary mb-1" style="font-size: smaller;">
+                    Ensure to keep a backup of your original file to revert changes, if necessary.
+                </p>
                 <input class="form-control" id="vCardInput" onclick="this.value=null;" type="file" accept=".vcf">
-                <div class="mt-2 mb-0 alert alert-primary" role="alert">
+                <div class="mt-2 fw-light alert alert-secondary mb-0 p-2">
                     Your contact list is processed exclusively on the client side, never leaving your browser.
                 </div>
             </div>
