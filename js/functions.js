@@ -96,6 +96,9 @@ function appendContact(contact, tableBody) {
     if (phoneNumbersLength < 1) {
         return;
     }
+    for (let idx = 0; idx < phoneNumbers.length; idx++) {
+        phoneNumbers[idx] = phoneNumbers[idx].replace(/[\s-\(\)]/g, "");
+    }
     let row = document.createElement("tr");
     const icon = `<img src="${image || USER_ICON}" class="img-fluid rounded-circle" width="50" alt="Icon">`;
     row.innerHTML = `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${icon}</td>`;
