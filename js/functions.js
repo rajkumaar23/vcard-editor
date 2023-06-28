@@ -100,13 +100,13 @@ function appendContact(contact, tableBody) {
     const icon = `<img src="${image || USER_ICON}" class="img-fluid rounded-circle" width="50" alt="Icon">`;
     row.innerHTML = `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${icon}</td>`;
     row.innerHTML += `<td class='${defaultTdClasses}' rowspan=${phoneNumbersLength}>${fullName}</td>`;
-    row.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumbers[0] || "N/A"}</td>`;
     row.innerHTML += `<td class='${defaultTdClasses} ${getClassForModifiedPhoneRow(phoneNumbers[0])}'>${addCountryCode(phoneNumbers[0]) || "N/A"}</td>`;
+    row.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumbers[0] || "N/A"}</td>`;
     tableBody.appendChild(row);
     phoneNumbers.slice(1).forEach((phoneNumber) => {
         let phoneNumberRow = document.createElement("tr");
-        phoneNumberRow.innerHTML = `<td class='${defaultTdClasses}'>${phoneNumber}</td>`;
-        phoneNumberRow.innerHTML += `<td class='${defaultTdClasses} ${getClassForModifiedPhoneRow(phoneNumber)}'>${addCountryCode(phoneNumber) || "N/A"}</td>`;
+        phoneNumberRow.innerHTML = `<td class='${defaultTdClasses} ${getClassForModifiedPhoneRow(phoneNumber)}'>${addCountryCode(phoneNumber) || "N/A"}</td>`;
+        phoneNumberRow.innerHTML += `<td class='${defaultTdClasses}'>${phoneNumber}</td>`;
         tableBody.appendChild(phoneNumberRow);
     });
 }
