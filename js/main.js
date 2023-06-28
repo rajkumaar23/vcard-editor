@@ -1,4 +1,5 @@
 import "../scss/style.scss";
+import * as _ from "bootstrap";
 import {
   downloadUpdatedVCF,
   handleCountryCodeChange,
@@ -35,5 +36,3 @@ includeLeadingZeroNumbersCheckbox.onchange =
 
 const downloadUpdatedVCFButton = document.getElementById("downloadVCF");
 downloadUpdatedVCFButton.onclick = downloadUpdatedVCF;
-
-

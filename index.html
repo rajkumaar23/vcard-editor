@@ -20,13 +20,72 @@
 </head>
 
 <body class="min-vh-100 text-bg-light">
+    <div class="modal fade" tabindex="-1" id="credits">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Credits</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This webapp wouldn't have been possible without ...</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Font by <a href="//rsms.me/inter">Inter</a></li>
+                        <li class="list-group-item">Tooling by <a href="//vitejs.dev">vitejs</a></li>
+                        <li class="list-group-item">Icons from <a href="//icons8.com">icons8</a></li>
+                        <li class="list-group-item">Styles from <a href="//getbootstrap.com">Bootstrap</a></li>
+                        <li class="list-group-item">vCard parsing by <a
+                                href="//www.npmjs.com/package/ical.js/v/1.2.1">ical.js</a></li>
+                        <li class="list-group-item">Favicon based on <a href="//twemoji.twitter.com">Twemoji</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="instructions">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Instructions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>iOS</b>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Open the <b>Contacts</b> app.</li>
+                            <li class="list-group-item">Tap on the <b>Lists</b> button located at the top left.</li>
+                            <li class="list-group-item">Long-press on the <b>All Contacts</b> option.</li>
+                            <li class="list-group-item">Tap on the <b>Share</b> button.</li>
+                        </ul>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <b>Android</b>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Open the "Contacts" app.</li>
+                            <li class="list-group-item">At the bottom, tap <b>Fix & manage</b> and then <b>Export to file</b>.</li>
+                            <li class="list-group-item">Choose one or more accounts to export contacts from.</li>
+                            <li class="list-group-item">Tap <b>Export to .VCF file</b>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container d-flex align-items-center justify-content-center">
         <div class="content mt-md-5 mt-3">
             <h1 class="display-1 fw-bold">vCard Editor</h1>
             <p class="h4">Add country codes to mobile numbers in a few clicks!</p>
-            <p class="text-secondary">Remember to keep a backup of your original VCF file to revert changes, if
+            <p class="h6 text-secondary">For instructions on how to export your contacts as a .vcf file, click <a
+                    class="text-secondary" href="#" role="button" data-bs-toggle="modal"
+                    data-bs-target="#instructions">here</a>.</p>
+            <p class="h6 text-secondary">Remember to keep a backup of your original VCF file to revert changes, if
                 necessary.</p>
-            <div class="my-2 d-inline-block w-auto">
+            <div class="my-3 d-inline-block w-auto">
                 <label class="mb-1" for="vCardInput">Upload your vCard (.vcf) file</label>
                 <input class="form-control" id="vCardInput" onclick="this.value=null;" type="file" accept=".vcf">
                 <div class="mt-2 mb-0 alert alert-primary" role="alert">
@@ -106,8 +165,14 @@
         </div>
     </div>
     <div class="container my-3 d-flex justify-content-center">
-        <div class="content">
-            <p>Built with &hearts; by <a class="text-dark" href="//rajkumaar.co.in">Rajkumar</a></p>
+        <div class="content text-center">
+            <p>
+                <a class="text-dark text-decoration-none" href="//rajkumaar.co.in">Built with &hearts; by Rajkumar</a>
+                <br>
+                <a class="text-dark" href="//github.com/rajkumaar23/vcard-editor">Code</a>
+                | <a class="text-dark" href="#" role="button" data-bs-toggle="modal"
+                    data-bs-target="#credits">Credits</a>
+            </p>
         </div>
     </div>
     <script src="/js/main.js" type="module"></script>
