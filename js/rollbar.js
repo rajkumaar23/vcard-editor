@@ -1,10 +1,9 @@
-const isDevMode = window.location.hostname == 'localhost';
 var _rollbarConfig = {
-  accessToken: import.meta.env.ROLLBAR_TOKEN,
-  captureUncaught: !isDevMode,
-  captureUnhandledRejections: !isDevMode,
+  accessToken: import.meta.env.VITE_ROLLBAR_TOKEN,
+  captureUncaught: import.meta.env.PROD,
+  captureUnhandledRejections: import.meta.env.PROD,
   payload: {
-    environment: isDevMode ? 'development' : 'production'
+    environment: import.meta.env.MODE
   }
 };
 // Rollbar Snippet

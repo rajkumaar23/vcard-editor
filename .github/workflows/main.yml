@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Create .env file
-        run: echo "ROLLBAR_TOKEN=${{ secrets.ROLLBAR_TOKEN }}" >> .env
+        run: echo "VITE_ROLLBAR_TOKEN=${{ secrets.ROLLBAR_TOKEN }}" >> .env
       - name: Build
         run: npm run build
       - name: Setup Pages
