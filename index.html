@@ -20,6 +20,19 @@
 </head>
 
 <body class="min-vh-100 text-bg-light">
+    <div class="modal fade" tabindex="-1" id="error">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="errorBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" tabindex="-1" id="credits">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -28,7 +41,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>This webapp wouldn't have been possible without ...</p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Font by <a href="//rsms.me/inter">Inter</a></li>
                         <li class="list-group-item">Tooling by <a href="//vitejs.dev">vitejs</a></li>
@@ -77,16 +89,18 @@
             </div>
         </div>
     </div>
-    <div class="container d-flex align-items-center justify-content-center">
+    <div class="container d-flex justify-content-center">
         <div class="content mt-md-5 mt-3">
             <h1 class="display-1 fw-bold">vCard Editor</h1>
-            <p class="h4">Add country codes to mobile numbers in a few clicks!</p>
-            <p class="h6 text-secondary">For instructions on how to export your contacts as a .vcf file, click <a
-                    class="text-secondary" href="#" role="button" data-bs-toggle="modal"
+            <p class="fw-medium mb-0">
+                Seamlessly prefix the country code to mobile numbers of your contacts!
+            </p>
+            <p class="mb-1 fw-light text-secondary">For instructions on how to export your contacts as a .vcf file,
+                click <a class="text-secondary" href="#" role="button" data-bs-toggle="modal"
                     data-bs-target="#instructions">here</a>.</p>
-            <div class="my-3 d-inline-block w-auto">
-                <label class="mx-1" for="vCardInput">Upload your vCard (.vcf) file</label>
-                <p class="mx-1 fw-lighter text-secondary mb-1" style="font-size: smaller;">
+            <div class="my-2 d-inline-block w-auto">
+                <label for="vCardInput">Upload your vCard (.vcf) file</label>
+                <p class="fw-lighter text-secondary mb-1" style="font-size: smaller;">
                     Ensure to keep a backup of your original file to revert changes, if necessary.
                 </p>
                 <input class="form-control" id="vCardInput" onclick="this.value=null;" type="file" accept=".vcf">
@@ -177,6 +191,7 @@
             </p>
         </div>
     </div>
+    <button class="d-none" id="showError" type="button" data-bs-toggle="modal" data-bs-target="#error"></button>
     <script src="/js/main.js" type="module"></script>
 </body>
 
