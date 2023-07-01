@@ -7,6 +7,14 @@ import {
   showError
 } from './helpers';
 
+function handleReportError() {
+  document.getElementById('closeErrorModal').click();
+  if (window.currentError) {
+    Rollbar.error(window.currentError);
+  }
+  window.currentError = undefined;
+}
+
 function handleDownloadVCFButton() {
   try {
     let modifiedVCardData = [];
@@ -122,5 +130,6 @@ export {
   handleRefreshPreview,
   handleVCardUpload,
   handleDownloadVCFButton,
-  handleInit
+  handleInit,
+  handleReportError
 };

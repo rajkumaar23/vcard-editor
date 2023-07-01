@@ -1,12 +1,15 @@
 import '../scss/style.scss';
 import * as _ from 'bootstrap';
+import * as __ from './rollbar';
+
 import {
   handleDownloadVCFButton,
   handleCountryCodeChange,
   handleLeadingZeroNumbersCheckboxChange,
   handlePhoneNumberDigitsChange,
   handleVCardUpload,
-  handleInit
+  handleInit,
+  handleReportError
 } from './handlers';
 
 window.vCardData = [];
@@ -33,6 +36,9 @@ includeLeadingZeroNumbersCheckbox.onchange = handleLeadingZeroNumbersCheckboxCha
 
 const downloadUpdatedVCFButton = document.getElementById('downloadVCF');
 downloadUpdatedVCFButton.onclick = handleDownloadVCFButton;
+
+const reportErrorButton = document.getElementById('reportError');
+reportErrorButton.onclick = handleReportError;
 
 export {
   vCardFileInput,

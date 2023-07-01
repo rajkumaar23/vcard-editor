@@ -25,10 +25,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="closeErrorModal" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="errorBody">
-
+                <div class="modal-body">
+                    <p id="errorBody"></p>
+                    <button class="my-2 col-12 btn btn-dark" id="reportError" type="button">
+                        Submit error report
+                    </button>
                 </div>
             </div>
         </div>

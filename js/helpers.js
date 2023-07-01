@@ -79,6 +79,7 @@ function parseVCard(vCardData) {
 function showError(e) {
   document.getElementById('errorBody').innerHTML = e.message;
   document.getElementById('showError').click();
+  window.currentError = e;
 }
 
 function addCountryCode(phoneNumber) {
