@@ -9,7 +9,8 @@ import {
   handlePhoneNumberDigitsChange,
   handleVCardUpload,
   handleInit,
-  handleReportError
+  handleReportError,
+  handleGlobalError
 } from './handlers';
 
 window.vCardData = [];
@@ -18,6 +19,8 @@ window.updateConfig = {
   countryCode: '+91',
   includeLeadingZeroNumbers: true
 };
+
+window.onerror = handleGlobalError;
 
 handleInit();
 

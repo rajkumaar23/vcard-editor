@@ -123,6 +123,19 @@ function handleInit() {
   }
 }
 
+function handleGlobalError(message, source, lineno, colno, error) {
+  const errorMessage = `An unexpected error occurred: \n
+    Message: ${message} \n
+    Source: ${source} \n
+    Line Number: ${lineno} \n
+    Column Number: ${colno} \n
+    ${error ? `Error: ${error.message}` : ''}`;
+
+  Rollbar.error(Error(errorMessage));
+
+  return true; // Prevent default error handling
+}
+
 export {
   handlePhoneNumberDigitsChange,
   handleCountryCodeChange,
@@ -131,5 +144,6 @@ export {
   handleVCardUpload,
   handleDownloadVCFButton,
   handleInit,
-  handleReportError
+  handleReportError,
+  handleGlobalError
 };
