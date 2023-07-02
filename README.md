@@ -3,6 +3,10 @@ a simple webapp to prefix country code to your contacts in bulk.
 
 ![screenshot](/screenshot.png)
 
+# demo
+
+try it yourself at [https://vcard-editor.rajkumaar.co.in](https://vcard-editor.rajkumaar.co.in)
+
 # development
 
 there's no JS framework used. everything vanilla!
