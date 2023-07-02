@@ -39,7 +39,10 @@ function handleDownloadVCFButton() {
           lines.push(prop.toICALString());
         }
         lines.push('END:VCARD');
-        modifiedVCardData.push(lines.join('\r\n'));
+
+        // When multiple type values are enclosed within quotes, it is sometimes recognised by
+        // parsers as a single type. Hence, removing the quote.
+        modifiedVCardData.push(lines.join('\r\n').replace(/TYPE="([a-zA-Z-,]+)"/gim, 'TYPE=$1'));
       }
     });
     const downloadLink = document.createElement('a');
