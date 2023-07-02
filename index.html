@@ -19,7 +19,7 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 
-<body class="min-vh-100 text-bg-light">
+<body>
     <div class="modal fade" tabindex="-1" id="error">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -78,7 +78,7 @@
                             <li class="list-group-item">Open the <b>Contacts</b> app.</li>
                             <li class="list-group-item">Tap on the <b>Lists</b> button located at the top left.</li>
                             <li class="list-group-item">Long-press on the <b>All Contacts</b> option.</li>
-                            <li class="list-group-item">Tap on the <b>Share</b> button.</li>
+                            <li class="list-group-item">Tap on the <b>Export</b> button.</li>
                         </ul>
                     </div>
                     <div class="card mt-3">
@@ -99,7 +99,9 @@
     </div>
     <div class="container d-flex justify-content-center">
         <div class="content mt-md-5 mt-3">
-            <h1 class="display-1 fw-bold">vCard Editor</h1>
+            <h1 class="display-1 fw-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                vCard Editor
+            </h1>
             <p class="fw-medium mb-0">
                 Seamlessly prefix the country code to mobile numbers of your contacts!
             </p>
@@ -112,8 +114,8 @@
                     Ensure to keep a backup of your original file to revert changes, if necessary.
                 </p>
                 <input class="form-control" id="vCardInput" onclick="this.value=null;" type="file" accept=".vcf">
-                <div class="mt-2 fw-light alert alert-secondary mb-0 p-2">
-                    Your contact list is processed exclusively on the client side, never leaving your browser.
+                <div class="mt-2 fw-light alert alert-success mb-0 p-2">
+                    Your contact list stays private and secure, processed solely within your web browser.
                 </div>
             </div>
         </div>
