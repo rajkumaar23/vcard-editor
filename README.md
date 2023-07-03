@@ -20,3 +20,6 @@ there's no JS framework used. everything vanilla!
 - `npm run dev`
 
 yep, that's it! the webapp should be running at [localhost:5173](http://localhost:5173).
+
+# license
+vcard-editor is licensed under the [Mozilla Public License](https://www.mozilla.org/MPL/2.0/), version 2.0.
