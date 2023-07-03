@@ -3,15 +3,19 @@ a simple webapp to prefix country code to your contacts in bulk.
 
 ![screenshot](/screenshot.png)
 
+# instructions
+
+read the blog post at [https://rajkumaar.co.in/posts/vcard-editor](https://rajkumaar.co.in/posts/vcard-editor).
+
 # demo
 
-try it yourself at [https://vcard-editor.rajkumaar.co.in](https://vcard-editor.rajkumaar.co.in)
+try it yourself at [https://vcard-editor.rajkumaar.co.in](https://vcard-editor.rajkumaar.co.in)!
 
 # development
 
 there's no JS framework used. everything vanilla!
 
-- clone the repo
+- `git clone` the repo and `cd` into it
 - `npm i`
 - `npm run dev`
 
